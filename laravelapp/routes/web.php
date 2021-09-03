@@ -22,6 +22,10 @@ Route::get('push', function () {
     return view('push');
 });
 
+Route::get('test', function () {
+    return view('test');
+});
+
 // Route::get('hello', 'App\Http\Controllers\HelloController@index');
 
 // Route::get('hello', function () {
