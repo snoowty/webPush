@@ -26,13 +26,13 @@ Route::get('test', function () {
     return view('test');
 });
 
-// Route::get('hello', 'App\Http\Controllers\HelloController@index');
+Route::get('hello', 'App\Http\Controllers\SelectController@index');
 
 // Route::get('hello', function () {
 //     return view('hello.index');
 // });
 
-Route::get('hello', 'App\Http\Controllers\HelloController@index')
-    ->middleware(HelloMiddleware::class);
+// Route::get('hello', 'App\Http\Controllers\HelloController@index')
+//     ->middleware(HelloMiddleware::class);
     
-Route::post('hello', 'App\Http\Controllers\HelloController@post');
+// Route::post('hello', 'App\Http\Controllers\HelloController@post');

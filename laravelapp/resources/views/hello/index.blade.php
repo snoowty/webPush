@@ -1,40 +1,47 @@
 @extends('layouts.helloapp')
 
-@section('title', 'Index')
+@section('title', 'WEBプッシュ通知')
 
 @section('menubar')
     @parent
-    インデックスページ
+    データ一覧
 @endsection
 
 @section('content')
-    <p>{{$msg}}</p>
-    @if (count($errors) > 0)
-    <p>入力に問題があります。再入力してください。</p>
-    @endif
-    <form action="/hello" method="post">
+
     <table>
-        @csrf
-        @if ($errors->has('msg'))
-        <tr><th>ERROR</th><td>{{$errors->first('msg')}}</td></tr>
-        @endif
-        <tr><th>Message: </th><td><input type="text" name="msg" value="{{old('msg')}}"></td></tr>
-        <tr><th></th><td><input type="submit" value="send"></td></tr>
+        <tr><th>通知文ID</th><th>タイトル</th><th>本文</th><th>クリックイベント</th><th>有効期限開始</th><th>有効期限終了</th><th>削除フラグ</th></tr>
+        @foreach ($items_all as $item_all)
+            <tr>
+                <td>{{$item_all->msg_id}}</td>
+                <td>{{$item_all->msg_title}}</td>
+                <td>{{$item_all->msg_body}}</td>
+                <td>{{$item_all->msg_clicked}}</td>
+                <td>{{$item_all->start_date}}</td>
+                <td>{{$item_all->end_date}}</td>
+                <td>{{$item_all->del_flg}}</td>
+            </tr>
+        @endforeach
     </table>
-    </form>
 
-    <!-- @component('components.message')
-        @slot('msg_title')
-        CAUTION!
-        @endslot
+@endsection
 
-        @slot('msg_content')
-        これはメッセージの表示です。
-        @endslot
-    @endcomponent -->
+@section('content2')
+
+    <table>
+        <tr><th>通知文ID</th><th>タイトル</th><th>本文</th><th>クリックイベント</th></tr>
+        @foreach ($items as $item)
+            <tr>
+                <td>{{$item->msg_id}}</td>
+                <td>{{$item->msg_title}}</td>
+                <td>{{$item->msg_body}}</td>
+                <td>{{$item->msg_clicked}}</td>
+            </tr>
+        @endforeach
+    </table>
 
 @endsection
 
 @section('footer')
-copyright 2021 yasuda.
+hellooo
 @endsection
